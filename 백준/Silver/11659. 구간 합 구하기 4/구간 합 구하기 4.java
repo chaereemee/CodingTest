@@ -1,26 +1,27 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-
-        int[] arr = new int[n];
-        int[] sArr = new int[n];
-        for(int i=0; i<n; i++) {
-            arr[i] = sc.nextInt();
-
-            if(i==0) sArr[i] = arr[i];
-            else sArr[i] = sArr[i-1] + arr[i];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        
+        long[] sArr = new long[n+1];
+        st = new StringTokenizer(br.readLine());
+        for(int i = 1; i <= n; i++) {
+            sArr[i] = sArr[i-1] + Integer.parseInt(st.nextToken());
         }
-
-        for(int i=0; i<m; i++) {
-            int i_idx = sc.nextInt();
-            int j_idx = sc.nextInt();
-
-            if(i_idx == 1) System.out.println(sArr[j_idx-1]);
-            else System.out.println(sArr[j_idx-1] - sArr[i_idx-2]);
+        
+        for(int q = 0; q < m; q++) {
+            st = new StringTokenizer(br.readLine());
+            
+            int i = Integer.parseInt(st.nextToken());
+            int j = Integer.parseInt(st.nextToken());
+            
+            System.out.println(sArr[j] - sArr[i-1]);
         }
     }
 }
