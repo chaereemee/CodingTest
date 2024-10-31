@@ -23,8 +23,7 @@ public class Main {
                     rank++;
                 }
             }
-            sb.append(rank);
-            if(i < N-1) sb.append(" ");
+            sb.append(rank).append(" ");
         }
         System.out.println(sb);
     }
