@@ -2,21 +2,15 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] nums) {
-       int count = nums.length / 2;
-        TreeSet<Integer> set = new TreeSet<>();
+        HashSet<Integer> set = new HashSet<>();
         
-        for (int num : nums) {
-            set.add(num);
+        for(int i : nums) {
+            set.add(i);
         }
         
-        int kinds = set.size();
-        int answer;
-        
-        if (kinds > count)
-            answer = count;
+        if(set.size() < nums.length / 2)
+            return set.size();
         else
-            answer = kinds;
-        
-        return answer;
+            return nums.length / 2;
     }
 }

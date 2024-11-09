@@ -1,10 +1,10 @@
 # [level 1] 폰켓몬 - 1845 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1845?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1845) 
 
 ### 성능 요약
 
-메모리: 106 MB, 시간: 7.53 ms
+메모리: 83.4 MB, 시간: 5.49 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 11월 09일 17:02:19
+2024년 11월 09일 17:12:47
 
 ### 문제 설명
 
