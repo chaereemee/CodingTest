@@ -6,32 +6,38 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
-        boolean ctn = true;
-        while(ctn) {
+        while (true) {
             String str = br.readLine();
-            if(str.equals(".")) break;
+            if(str.equals(".")){
+                break;
+            }
 
             Stack<Character> stack = new Stack<>();
-            for(int i=0; i<str.length(); i++) {
-                if(str.charAt(i) == '(' || str.charAt(i) == '[') {
-                    stack.push(str.charAt(i));
-                } else if(str.charAt(i) == ')') {
-                    if(stack.isEmpty()) stack.push(str.charAt(i));
-                    else if(stack.peek() == '(') stack.pop();
-                    else break;
-                } else if(str.charAt(i) == ']') {
-                    if(stack.isEmpty()) stack.push(str.charAt(i));
-                    else if(stack.peek() == '[') stack.pop();
-                    else break;
+            boolean isBalanced = true;
+
+            for(char c : str.toCharArray()){
+                if(c == '(' || c == '['){
+                    stack.push(c);
+                } else if(c == ')') {
+                    if(stack.isEmpty() || stack.pop() != '('){
+                        isBalanced = false;
+                        break;
+                    }
+                } else if(c == ']') {
+                    if(stack.isEmpty() || stack.pop() != '['){
+                        isBalanced = false;
+                        break;
+                    }
                 }
             }
-
-            if(!stack.isEmpty()) {
-                sb.append("no").append("\n");
-            } else {
+            
+            if(isBalanced && stack.isEmpty()){
                 sb.append("yes").append("\n");
+            } else {
+                sb.append("no").append("\n");
             }
         }
+
         System.out.println(sb);
     }
 }
