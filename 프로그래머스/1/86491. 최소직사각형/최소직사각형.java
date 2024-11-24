@@ -2,17 +2,15 @@ import java.util.*;
 
 class Solution {
     public int solution(int[][] sizes) {
+        int maxHight = 0;
         int maxWidth = 0;
-        int maxHeight = 0;
-        
         for(int[] size : sizes) {
-            int width = Math.max(size[0], size[1]);
-            int height = Math.min(size[0], size[1]);
+            int height = Math.max(size[0], size[1]);
+            int width = Math.min(size[0], size[1]);
             
+            maxHight = Math.max(maxHight, height);
             maxWidth = Math.max(maxWidth, width);
-            maxHeight = Math.max(maxHeight, height);
         }
-        
-        return maxWidth * maxHeight;
+        return maxHight*maxWidth;
     }
 }
