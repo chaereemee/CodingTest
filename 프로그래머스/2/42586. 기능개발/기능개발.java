@@ -2,33 +2,31 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        ArrayList<Integer> list = new ArrayList<>();
-        
-        int n = progresses.length;
-        int[] days = new int[n];
-        for(int i=0; i<n; i++) {
+        int[] day = new int[progresses.length];
+        for(int i=0; i<day.length; i++) {
             int remaining = 100 - progresses[i];
-            days[i] = remaining % speeds[i] == 0 ? remaining / speeds[i] : remaining / speeds[i] + 1;
+            day[i] = remaining % speeds[i] == 0 ? remaining / speeds[i] : remaining / speeds[i] + 1;
         }
         
-        int deploy = days[0];
+        Queue<Integer> queue = new LinkedList<>();
+        int deploy = day[0];
         int count = 1;
-        for(int i=1; i<n; i++) {
-            if(days[i] <= deploy) {
+        for(int i=1; i<day.length; i++) {
+            if(deploy >= day[i]) {
                 count++;
             } else {
-                list.add(count);
-                deploy = days[i];
+                queue.add(count);
                 count = 1;
+                deploy = day[i];
             }
         }
+        queue.add(count);
         
-        list.add(count);
-        
-        int[] answer = new int[list.size()];
-        for(int i=0; i<answer.length; i++) {
-            answer[i] = list.get(i);
+        int[] result = new int[queue.size()];
+        for(int i=0; i<result.length; i++) {
+            result[i] = queue.poll();
         }
-        return answer;
+        
+        return result;
     }
 }
