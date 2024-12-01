@@ -10,10 +10,11 @@ class Solution {
         }
         
         int count = 1;
-        for(int value : map.values()) {
-            count *= (value + 1); // 각 종류에서 선택하지 않은 경우 포함
+        for(String key : map.keySet()) {
+            count *= map.get(key) + 1;
         }
+        count -= 1;
         
-        return count - 1;
+        return count;
     }
 }
