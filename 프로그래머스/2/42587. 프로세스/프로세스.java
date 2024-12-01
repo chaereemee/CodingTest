@@ -5,32 +5,31 @@ class Solution {
         Queue<int[]> queue = new LinkedList<>();
         
         for(int i=0; i<priorities.length; i++) {
-            queue.add(new int[]{priorities[i], i});
+            queue.add(new int[] {priorities[i], i}); // 중요도, 순서
         }
         
-        int count = 0;
-        
+        int count = 1;
         while(!queue.isEmpty()) {
-            int[] current = queue.poll();
-            boolean high = false;
+            int[] process = queue.poll();
             
+            boolean high = true;
             for(int[] q : queue) {
-               if(q[0] > current[0]) {
-                   high = true;
-                   break;
-               }
+                if(process[0] < q[0]) {
+                    high = false;
+                    queue.add(process);
+                    break;
+                }
             }
             
             if(high) {
-                queue.add(current);
-            } else {
-                count++;
-                if(current[1] == location) {
+                if(process[1] == location) {
                     return count;
                 }
+                
+                count++;
             }
         }
         
-        return count;
+        return -1;
     }
 }
